@@ -1,0 +1,97 @@
+{
+  "theme": "Dark",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "typography": {
+    "fonts": [
+      {"family": "Chivo", "weight": "900", "usage": "Headings"},
+      {"family": "IBM Plex Sans", "weight": "400, 500", "usage": "Body and Tables"}
+    ],
+    "hierarchy": {
+      "h1": "text-4xl md:text-5xl tracking-tighter leading-none font-black",
+      "h2": "text-2xl md:text-3xl tracking-tight leading-tight font-bold",
+      "h3": "text-xl md:text-2xl tracking-tight font-bold",
+      "h4": "text-lg md:text-xl font-medium",
+      "body": "text-base leading-relaxed text-zinc-300",
+      "small": "text-sm text-zinc-400 uppercase tracking-widest",
+      "overline": "text-xs font-bold text-zinc-500 uppercase tracking-[0.2em]"
+    }
+  },
+  "color_palette": {
+    "background": {
+      "primary": "bg-zinc-950",
+      "secondary": "bg-zinc-900",
+      "surface": "bg-zinc-800/50"
+    },
+    "text": {
+      "primary": "text-zinc-50",
+      "secondary": "text-zinc-400",
+      "muted": "text-zinc-500"
+    },
+    "border": {
+      "default": "border-zinc-800",
+      "focus": "border-white"
+    },
+    "brand_action": {
+      "primary": "bg-white text-zinc-950 hover:bg-zinc-200",
+      "secondary": "bg-transparent border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white"
+    },
+    "functional": {
+      "medical": "text-red-500 bg-red-500/10 border-red-500/20",
+      "security": "text-orange-500 bg-orange-500/10 border-orange-500/20",
+      "maintenance": "text-amber-500 bg-amber-500/10 border-amber-500/20",
+      "general": "text-blue-400 bg-blue-500/10 border-blue-500/20",
+      "success": "text-emerald-500 bg-emerald-500/10 border-emerald-500/20"
+    }
+  },
+  "spacing_and_layout": {
+    "strategy": "Dense, grid-based, 'Control Room' mode for Dashboards",
+    "grid_system": "grid-cols-1 md:grid-cols-4 gap-4 md:gap-6",
+    "padding_scale": "p-4 md:p-6 for standard cards, p-8 for main sections",
+    "border_radius": "rounded-none or max rounded-sm (2px-4px) to maintain rigid structure",
+    "alignment": "Strict left-alignment for data and tables, minimal center-alignment. Optical alignment applied.",
+    "surface_styles": {
+      "cards": "bg-zinc-900 border border-zinc-800 shadow-none hover:border-zinc-700 transition-colors",
+      "header": "bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800 sticky top-0 z-50",
+      "sidebar": "bg-zinc-950 border-r border-zinc-800"
+    }
+  },
+  "components_instructions": {
+    "buttons": "Square edges, high contrast. Use 'bg-white text-black' for primary CTAs.",
+    "inputs": "Shadcn standard but customized to zero/minimal border-radius. bg-zinc-900 border-zinc-800 focus:border-white focus:ring-1 focus:ring-white.",
+    "tables": "Dense rows, transparent backgrounds. Highlight rows on hover with bg-zinc-900. Status pills should use functional colors.",
+    "dialogs": "bg-zinc-950 border border-zinc-800, dark overlay (bg-black/80). Keep it flat, no heavy shadows.",
+    "tabs": "Underline or solid block active state. Not pills.",
+    "badges": "Square, subtle background tint, high contrast text.",
+    "navigation": "Vertical sidebar with clear active states (white text, zinc-800 bg). 'Hamburger' menu for mobile, visible sidebar on desktop."
+  },
+  "motion_and_interactions": {
+    "hover": "Subtle border color shifts (zinc-800 to zinc-600) and text brightness shifts.",
+    "click": "No bouncy scales. Immediate state change or very quick transform: scale(0.98).",
+    "transitions": "transition-colors duration-200 ease-in-out for states. No 'transition-all'.",
+    "loading": "ASCII art loaders or simple pure white spinners.",
+    "accessibility": "Focus rings must be solid white and highly visible. aria-hidden on purely decorative elements."
+  },
+  "media": {
+    "images": [
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/64333471-df70-43c7-8530-b703eac7cded/images/88eb87d62bc3044e30cd981e3c8fb10f71e008625de54ca0d0cbac6c86e097c1.png",
+        "description": "Dark architectural shot for login screen background",
+        "category": "background",
+        "slot": "login_hero"
+      }
+    ],
+    "icons": "Use lucide-react (default) or Phosphor Icons for dense data. Prefer rigid, functional icon shapes."
+  },
+  "app_specific_instructions": {
+    "pin_login": "Minimalist center modal over dark background. Huge digits. data-testid='pin-input'.",
+    "clock_in_out": "Massive typography for current time. Two dominant buttons: 'ENTRATA' (Green) / 'USCITA' (Red).",
+    "shift_handover": "Two prominent text areas. Requires a checkbox 'Confermo lettura consegne' to proceed.",
+    "logistics_laundry": "32 grid cells or a dense list showing the 3 shifts. Color-coded (Red/Green) for washed/pending.",
+    "planimetria": "Visual layout of 32 rooms. CSS Grid based. Red = Occupied/Issue, Green = Clear.",
+    "export_pdf": "Provide a clean, printable view format (black text on white bg specifically for print `@media print`).",
+    "language": "Italian exclusively. (e.g., 'Diario Digitale', 'Passaggio Consegne', 'Lavanderia')."
+  },
+  "testing": {
+    "data_testid": "All interactive and key informational elements MUST include a `data-testid` attribute (e.g., `data-testid='login-submit-button'`, `data-testid='clock-in-button'`)."
+  }
+}
