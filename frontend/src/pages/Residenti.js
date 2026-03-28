@@ -480,7 +480,7 @@ export const Residenti = () => {
                 </div>
               </div>
               
-              <Select value={filterRoom} onValueChange={setFilterRoom}>
+              <Select value={filterRoom || 'all'} onValueChange={setFilterRoom}>
                 <SelectTrigger className="w-40 bg-zinc-900 border-zinc-800" data-testid="filter-room">
                   <SelectValue placeholder="Camera" />
                 </SelectTrigger>
@@ -492,7 +492,7 @@ export const Residenti = () => {
                 </SelectContent>
               </Select>
 
-              <Select value={filterStatus} onValueChange={setFilterStatus}>
+              <Select value={filterStatus || 'all'} onValueChange={setFilterStatus}>
                 <SelectTrigger className="w-40 bg-zinc-900 border-zinc-800" data-testid="filter-status">
                   <SelectValue placeholder="Stato" />
                 </SelectTrigger>

@@ -258,7 +258,7 @@ async def get_monthly_hours(year: int, month: int):
                     diff = (out_time - in_time).total_seconds() / 60
                     if diff > 0:
                         total_minutes += diff
-                except:
+                except (ValueError, TypeError, KeyError):
                     pass
         
         hours = total_minutes / 60
@@ -436,7 +436,7 @@ def calculate_laundry_rooms(date_str: str) -> dict:
     """Calculate which rooms should do laundry on a given date based on 3-shift rotation"""
     try:
         date = datetime.fromisoformat(date_str)
-    except:
+    except (ValueError, TypeError):
         date = datetime.now(timezone.utc)
     
     # Get day of week (0=Monday, 6=Sunday)

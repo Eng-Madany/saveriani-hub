@@ -85,10 +85,12 @@ export const Diario = () => {
 
     setIsSubmitting(true);
     try {
-      const selectedResident = residents.find(r => r.id === newLog.resident_id);
+      const residentId = newLog.resident_id === 'none' ? null : newLog.resident_id;
+      const selectedResident = residentId ? residents.find(r => r.id === residentId) : null;
       
       await axios.post(`${API}/logs`, {
         ...newLog,
+        resident_id: residentId,
         staff_id: currentUser.id,
         staff_name: currentUser.name,
         resident_name: selectedResident ? `${selectedResident.surname} ${selectedResident.name}` : null
@@ -218,7 +220,7 @@ export const Diario = () => {
                       <SelectValue placeholder="Seleziona residente..." />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-900 border-zinc-800 max-h-60">
-                      <SelectItem value="">Nessuno</SelectItem>
+                      <SelectItem value="none">Nessuno</SelectItem>
                       {residents.map((resident) => (
                         <SelectItem key={resident.id} value={resident.id}>
                           {resident.surname} {resident.name} - Camera {resident.room_number}
@@ -269,7 +271,7 @@ export const Diario = () => {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setFilterCategory('all')}
-                  className={`category-pill ${filterCategory === 'all' ? 'active' : ''}`}
+                  className={`category-pill ${filterCategory === 'all' || !filterCategory ? 'active' : ''}`}
                   data-testid="filter-all"
                 >
                   Tutti
@@ -287,7 +289,7 @@ export const Diario = () => {
               </div>
 
               {/* Shift Filter */}
-              <Select value={filterShift} onValueChange={setFilterShift}>
+              <Select value={filterShift || 'all'} onValueChange={setFilterShift}>
                 <SelectTrigger className="w-40 bg-zinc-900 border-zinc-800" data-testid="filter-shift">
                   <SelectValue placeholder="Turno" />
                 </SelectTrigger>
