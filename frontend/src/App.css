@@ -1,34 +1,153 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
+/* App specific styles */
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #0f0f10;
+.App {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
 }
 
-.App-link {
-    color: #61dafb;
+/* Login background */
+.login-bg {
+    background-image: url('https://static.prod-images.emergentagent.com/jobs/64333471-df70-43c7-8530-b703eac7cded/images/88eb87d62bc3044e30cd981e3c8fb10f71e008625de54ca0d0cbac6c86e097c1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
+/* Sidebar active state */
+.sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors border-l-2 border-transparent;
+}
+
+.sidebar-link.active {
+    @apply text-white bg-zinc-800/50 border-l-white;
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    @apply bg-zinc-900 border border-zinc-800 p-6 hover:border-zinc-700 transition-colors;
+}
+
+/* Time display */
+.time-display {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+/* Table improvements */
+.data-table {
+    @apply w-full;
+}
+
+.data-table th {
+    @apply text-left text-xs font-bold text-zinc-500 uppercase tracking-widest pb-3 border-b border-zinc-800;
+}
+
+.data-table td {
+    @apply py-3 border-b border-zinc-800/50;
+}
+
+.data-table tr:hover td {
+    @apply bg-zinc-800/30;
+}
+
+/* Form inputs dark theme override */
+.dark input, 
+.dark textarea, 
+.dark select {
+    @apply bg-zinc-900 border-zinc-800 focus:border-white focus:ring-1 focus:ring-white;
+}
+
+/* Button variants */
+.btn-clock-in {
+    @apply bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-8 text-xl transition-colors;
+}
+
+.btn-clock-out {
+    @apply bg-red-600 hover:bg-red-500 text-white font-bold py-4 px-8 text-xl transition-colors;
+}
+
+/* Planimetria grid */
+.planimetria-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .planimetria-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
-    to {
-        transform: rotate(360deg);
-    }
+}
+
+/* Loading spinner */
+.spinner {
+    @apply w-6 h-6 border-2 border-zinc-700 border-t-white rounded-full animate-spin;
+}
+
+/* Toast customization */
+[data-sonner-toaster] {
+    --normal-bg: hsl(0 0% 9%);
+    --normal-text: hsl(0 0% 98%);
+    --normal-border: hsl(0 0% 20%);
+}
+
+/* Shift indicator */
+.shift-indicator {
+    @apply inline-flex items-center gap-2 px-3 py-1 text-sm font-medium rounded-sm;
+}
+
+.shift-mattina {
+    @apply bg-amber-500/10 text-amber-500 border border-amber-500/20;
+}
+
+.shift-notte {
+    @apply bg-indigo-500/10 text-indigo-500 border border-indigo-500/20;
+}
+
+/* Category filter pills */
+.category-pill {
+    @apply px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer;
+}
+
+.category-pill.active {
+    @apply bg-white text-zinc-950;
+}
+
+.category-pill:not(.active) {
+    @apply bg-transparent border border-zinc-700 text-zinc-400 hover:bg-zinc-800 hover:text-white;
+}
+
+/* Quality rating stars */
+.quality-star {
+    @apply w-6 h-6 cursor-pointer transition-colors;
+}
+
+.quality-star.filled {
+    @apply text-amber-500;
+}
+
+.quality-star:not(.filled) {
+    @apply text-zinc-600 hover:text-zinc-400;
+}
+
+/* Report section */
+.report-section {
+    @apply mb-8 p-6 bg-white text-black;
+}
+
+.report-section h2 {
+    @apply text-2xl font-bold mb-4 pb-2 border-b-2 border-black;
+}
+
+.report-table {
+    @apply w-full border-collapse;
+}
+
+.report-table th,
+.report-table td {
+    @apply border border-zinc-300 p-2 text-left;
+}
+
+.report-table th {
+    @apply bg-zinc-100 font-bold;
 }
