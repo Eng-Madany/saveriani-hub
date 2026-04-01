@@ -3,6 +3,7 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider, useApp } from "./contexts/AppContext";
 import { Toaster } from "./components/ui/sonner";
+import { PersonalBadge } from "./components/PersonalBadge";
 
 // Pages
 import { Login } from "./pages/Login";
@@ -129,6 +130,7 @@ function App() {
             }
           }}
         />
+        <PersonalBadge />
       </div>
     </AppProvider>
   );
