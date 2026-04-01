@@ -2,8 +2,8 @@
   # Enable rewrite engine
   RewriteEngine On
   
-  # Set base to /hub/ subdirectory
-  RewriteBase /hub/
+  # Set base to root (since this is the main domain hub.madany.it)
+  RewriteBase /
   
   # If the requested resource exists as a file or directory, serve it
   RewriteCond %{REQUEST_FILENAME} !-f
@@ -23,29 +23,53 @@ Options -MultiViews
 # Set default charset
 AddDefaultCharset UTF-8
 
+# Force HTTPS (uncomment if SSL is configured)
+# <IfModule mod_rewrite.c>
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
 # Security headers
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Cache static assets
+# Cache static assets for better performance
 <IfModule mod_expires.c>
   ExpiresActive On
+  
+  # Images
   ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS and JavaScript
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType application/json "access plus 0 seconds"
+  ExpiresByType text/javascript "access plus 1 month"
+  
+  # Fonts
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  
+  # HTML - no cache for SPA
   ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
 </IfModule>
 
-# Compress text files
+# Enable Gzip compression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json text/javascript text/xml application/xml
 </IfModule>
+
+# Handle 404 errors - redirect to index.html for SPA
+ErrorDocument 404 /index.html

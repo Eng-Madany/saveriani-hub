@@ -203,3 +203,76 @@ code {
         display: contents !important;
     }
 }
+
+/* ============================================
+   PERSONAL BADGE - Eng. Maher Madany
+   Overwrites any residual watermark styles
+   ============================================ */
+
+/* Hide any residual Emergent watermark */
+[class*="emergent"],
+[class*="watermark"],
+[id*="emergent"],
+[id*="watermark"],
+[data-emergent],
+div[style*="Made with"],
+a[href*="emergent"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Personal Badge Styles */
+.personal-badge {
+    position: fixed !important;
+    bottom: 16px !important;
+    right: 16px !important;
+    z-index: 99999 !important;
+    padding: 10px 16px !important;
+    background: rgba(24, 24, 27, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: all 0.2s ease !important;
+    cursor: default !important;
+    user-select: none !important;
+}
+
+.personal-badge:hover {
+    background: rgba(24, 24, 27, 0.95) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.personal-badge__icon {
+    width: 14px !important;
+    height: 14px !important;
+    opacity: 0.8 !important;
+}
+
+.personal-badge__text {
+    font-weight: 500 !important;
+}
+
+.personal-badge__name {
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Ensure badge is always visible */
+#personal-brand-badge {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
