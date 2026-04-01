@@ -1,0 +1,47 @@
+<IfModule mod_rewrite.c>
+  # Enable rewrite engine
+  RewriteEngine On
+  
+  # Set the base directory (adjust if app is in a subdirectory)
+  RewriteBase /
+  
+  # If the requested resource exists as a file or directory, serve it
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  
+  # Otherwise, redirect all requests to index.html for SPA routing
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# Prevent directory listing (prevents 403 on folders)
+Options -Indexes
+
+# Enable CORS for API calls (if needed)
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+  Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+  Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Cache static assets for better performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Handle 404 errors
+ErrorDocument 404 /index.html
