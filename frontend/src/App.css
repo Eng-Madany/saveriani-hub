@@ -4,9 +4,9 @@
     min-height: 100vh;
 }
 
-/* Login background */
+/* Login background - use local image for production */
 .login-bg {
-    background-image: url('https://static.prod-images.emergentagent.com/jobs/64333471-df70-43c7-8530-b703eac7cded/images/88eb87d62bc3044e30cd981e3c8fb10f71e008625de54ca0d0cbac6c86e097c1.png');
+    background-image: url('./assets/login-bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
