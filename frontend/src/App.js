@@ -109,10 +109,14 @@ const AppRoutes = () => {
 };
 
 function App() {
+  // Use basename="/hub" for Apache deployment in /public_html/hub/
+  // Remove or set to "" for root deployment
+  const basename = process.env.REACT_APP_BASE_PATH || "";
+  
   return (
     <AppProvider>
       <div className="App dark">
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <AppRoutes />
         </BrowserRouter>
         <Toaster 
